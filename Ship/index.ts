@@ -121,7 +121,7 @@ class Cruises extends Ship {
     this.height = height;
   }
   
-  getSpeed(): void {
+  getSpeed = (): void => {
     let speed = this.width + this.height + this.length;
     if (speed < 200) speed = 200;
     if (speed > 800) speed = 800;
