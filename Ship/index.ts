@@ -102,6 +102,33 @@ class Sailboats extends Ship {
   }
 }
 
+// Cruises class implementation
+type CruisesProps = Omit<ShipProps, "type"> & {
+  width: number;
+  length: number;
+  height: number;
+};
+
+class Cruises extends Ship {
+  private width: number;
+  private length: number;
+  private height: number;
+
+  constructor({name, width, length, height}: CruisesProps) {
+    super(name, 'cruises');
+    this.width = width;
+    this.length = length;
+    this.height = height;
+  }
+  
+  getSpeed(): void {
+    let speed = this.width + this.height + this.length;
+    if (speed < 200) speed = 200;
+    if (speed > 800) speed = 800;
+    console.log(`The speed is ${speed}`)
+  }
+}
+
 // Test for Motorboats class
 const motorboats: Motorboats = new Motorboats("Motorboats A", 2);
 motorboats.getInformation();
@@ -116,3 +143,16 @@ const additionalEngines: Engine[] = [ {name: 'X1', speed: 100}, {name: 'Z1', spe
 const sailboats: Sailboats = new Sailboats({ name: "Sailboats B", numberOfSail: 2, additionalEngines });
 sailboats.getInformation();
 sailboats.getSpeed();
+
+console.log("");
+
+const sailboats2: Sailboats = new Sailboats({ name: "Sailboats C", numberOfSail: 4 });
+sailboats2.getInformation();
+sailboats2.getSpeed();
+
+console.log("");
+
+// Test for Cruises class
+const cruises: Cruises = new Cruises({name: "Cruises D", width: 40, length: 200, height: 10})
+cruises.getInformation();
+cruises.getSpeed();
