@@ -25,6 +25,7 @@ type MotorboatsProps = Omit<ShipProps, "type"> & { numberOfEngine: number };
 class Motorboats extends Ship {
   static engineSpeed = 120;
 
+  // Use constructor shorthand
   constructor(
     name: MotorboatsProps["name"],
     private numberOfEngine: MotorboatsProps["numberOfEngine"]
@@ -85,7 +86,7 @@ class Sailboats extends Ship {
 
   getSpeed = (): void => {
     const { totalSpeed, sailSpeed, engineSpeed } = this.countSpeed();
-    if (this.additionalEngines) {
+    if (this.additionalEngines && this.additionalEngines.length > 0) {
       console.log(`This ship has ${this.numberOfSail} sail(s) and uses these engine:`);
       this.additionalEngines.map((engine, index) =>
         console.log(
@@ -114,7 +115,8 @@ class Cruises extends Ship {
   private length: number;
   private height: number;
 
-  constructor({name, width, length, height}: CruisesProps) {
+  // Use object param for more than two params
+  constructor({ name, width, length, height }: CruisesProps) {
     super(name, 'cruises');
     this.width = width;
     this.length = length;
@@ -139,7 +141,10 @@ motorboats.getSpeed();
 console.log("");
 
 // Test for Sailboats class
-const additionalEngines: Engine[] = [ {name: 'X1', speed: 100}, {name: 'Z1', speed: 120} ];
+const additionalEngines: Engine[] = [ 
+  { name: 'X1', speed: 100 },
+  { name: 'Z1', speed: 120 },
+];
 const sailboats: Sailboats = new Sailboats({ name: "Sailboats B", numberOfSail: 2, additionalEngines });
 sailboats.getInformation();
 sailboats.getSpeed();
@@ -152,7 +157,13 @@ sailboats2.getSpeed();
 
 console.log("");
 
+const sailboats3: Sailboats = new Sailboats({ name: "Sailboats D", numberOfSail: 4, additionalEngines: [] });
+sailboats3.getInformation();
+sailboats3.getSpeed();
+
+console.log("");
+
 // Test for Cruises class
-const cruises: Cruises = new Cruises({name: "Cruises D", width: 40, length: 200, height: 10})
+const cruises: Cruises = new Cruises({name: "Cruises E", width: 40, length: 200, height: 10})
 cruises.getInformation();
 cruises.getSpeed();
