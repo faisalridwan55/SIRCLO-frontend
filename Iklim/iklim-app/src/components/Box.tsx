@@ -1,9 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Box = styled.div<any>`
+export type BoxProps = {
+  gutter?: string;
+  padding?: string;
+  rowSpacing?: string;
+  flexDirection?: string;
+};
+
+export const Box = styled.div<BoxProps>`
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection || "column"};
+  ${({ padding }) => padding && `padding: ${padding};`};
+
   ${({ gutter }) =>
     gutter &&
     `
