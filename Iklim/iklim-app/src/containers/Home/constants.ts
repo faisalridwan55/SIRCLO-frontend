@@ -12,15 +12,15 @@ export const CITIES: { id: number; name: string }[] = [
     name: "Bangkok",
   },
   {
-    id: 1650535,
-    name: "Provinsi Bali",
+    id: 2643743,
+    name: "London",
   },
   {
-    id: 7035024,
-    name: "Bandung",
+    id: 5128638,
+    name: "New York",
   },
   {
-    id: 1625084,
-    name: "Tangerang",
+    id: 6160752,
+    name: "Sydney",
   },
 ];
