@@ -11,6 +11,9 @@ import {
   Loading,
   TextBold,
   Container,
+  THead,
+  TCell,
+  TRow,
 } from "src/components";
 
 import { CITIES } from "./constants";
@@ -99,31 +102,31 @@ export default function Home() {
           <Text>{`Tabel forecast ${NUMBER_OF_DAYS} hari ke depan`}:</Text>
           <table>
             <thead>
-              <tr>
-                <th>{selectedCity.label}</th>
-                <th>Rata-rata suhu per hari</th>
-                <th>Rata-rata perbedaan suhu per hari</th>
-              </tr>
+              <TRow>
+                <THead>{selectedCity.label}</THead>
+                <THead>Rata-rata suhu per hari</THead>
+                <THead>Rata-rata perbedaan suhu per hari</THead>
+              </TRow>
             </thead>
             <tbody>
               {tableData?.forecast.map(({ date, temp, tempMax, tempMin }) => (
-                <tr key={date}>
-                  <td>{date}</td>
-                  <td>{`${temp.toFixed(2)}C`}</td>
-                  <td>{`${(tempMax - tempMin).toFixed(2)}C`}</td>
-                </tr>
+                <TRow key={date}>
+                  <TCell>{date}</TCell>
+                  <TCell>{`${temp.toFixed(2)}C`}</TCell>
+                  <TCell>{`${(tempMax - tempMin).toFixed(2)}C`}</TCell>
+                </TRow>
               ))}
-              <tr>
-                <td>
+              <TRow>
+                <TCell>
                   <TextBold>{`Rata-rata per ${NUMBER_OF_DAYS} hari`}</TextBold>
-                </td>
-                <td>
+                </TCell>
+                <TCell>
                   <TextBold>{`${tableData?.avgTemp.toFixed(2)}C`}</TextBold>
-                </td>
-                <td>
+                </TCell>
+                <TCell>
                   <TextBold>{`${tableData?.avgTempDiff.toFixed(2)}C`}</TextBold>
-                </td>
-              </tr>
+                </TCell>
+              </TRow>
             </tbody>
           </table>
         </Section>
