@@ -1,9 +1,10 @@
 export const Colors = {
   black: "#000",
   black2: "#363636",
-  white: "#FFF",
+  white: "#fff",
+  white2: "#ededed",
 
-  background: "#f5f5f5",
+  background: "#fcfcfc",
 };
 
 export const Sizes = {

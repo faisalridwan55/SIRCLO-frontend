@@ -3,7 +3,15 @@ import React, { useState, useEffect } from "react";
 import { Sizes } from "src/styles/themes";
 import { getForecast } from "src/service/api";
 import { useAPI, usePrevious } from "src/utils/hooks";
-import { TextBold, Text, Container, Row, Select, Box } from "src/components";
+import {
+  Row,
+  Box,
+  Text,
+  Select,
+  Loading,
+  TextBold,
+  Container,
+} from "src/components";
 
 import { CITIES } from "./constants";
 import { optionTypeDefault } from "./defaults";
@@ -75,6 +83,7 @@ export default function Home() {
 
   return (
     <Container padding="1rem 2rem" rowSpacing={Sizes.spacing.base}>
+      <Loading show={isFetchingData} />
       <Section id="city-options">
         <Row>Silahkan memilih kota:</Row>
         <Select<OptionType>
@@ -85,38 +94,40 @@ export default function Home() {
           }
         />
       </Section>
-      <Section id="temperature-table">
-        <Text>{`Tabel forecast ${NUMBER_OF_DAYS} hari ke depan`}:</Text>
-        <table>
-          <thead>
-            <tr>
-              <th>{selectedCity.label}</th>
-              <th>Rata-rata suhu per hari</th>
-              <th>Rata-rata perbedaan suhu per hari</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData?.forecast.map(({ date, temp, tempMax, tempMin }) => (
-              <tr key={date}>
-                <td>{date}</td>
-                <td>{`${temp.toFixed(2)}C`}</td>
-                <td>{`${(tempMax - tempMin).toFixed(2)}C`}</td>
+      {tableData && (
+        <Section id="temperature-table">
+          <Text>{`Tabel forecast ${NUMBER_OF_DAYS} hari ke depan`}:</Text>
+          <table>
+            <thead>
+              <tr>
+                <th>{selectedCity.label}</th>
+                <th>Rata-rata suhu per hari</th>
+                <th>Rata-rata perbedaan suhu per hari</th>
               </tr>
-            ))}
-            <tr>
-              <td>
-                <TextBold>{`Rata-rata per ${NUMBER_OF_DAYS} hari`}</TextBold>
-              </td>
-              <td>
-                <TextBold>{`${tableData?.avgTemp.toFixed(2)}C`}</TextBold>
-              </td>
-              <td>
-                <TextBold>{`${tableData?.avgTempDiff.toFixed(2)}C`}</TextBold>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </Section>
+            </thead>
+            <tbody>
+              {tableData?.forecast.map(({ date, temp, tempMax, tempMin }) => (
+                <tr key={date}>
+                  <td>{date}</td>
+                  <td>{`${temp.toFixed(2)}C`}</td>
+                  <td>{`${(tempMax - tempMin).toFixed(2)}C`}</td>
+                </tr>
+              ))}
+              <tr>
+                <td>
+                  <TextBold>{`Rata-rata per ${NUMBER_OF_DAYS} hari`}</TextBold>
+                </td>
+                <td>
+                  <TextBold>{`${tableData?.avgTemp.toFixed(2)}C`}</TextBold>
+                </td>
+                <td>
+                  <TextBold>{`${tableData?.avgTempDiff.toFixed(2)}C`}</TextBold>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
+      )}
     </Container>
   );
 }
