@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { AxiosError } from "axios";
 
+// Inspired from one of our utility functions at STOQO
 export function useAPI<T>(
   fetchPromise: (...args) => Promise<{ data: T }>
 ): [T | null, (...args) => Promise<void>, boolean, AxiosError | null] {
