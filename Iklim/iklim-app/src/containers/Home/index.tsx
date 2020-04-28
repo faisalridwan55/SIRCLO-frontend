@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-import { Sizes } from "src/styles/themes";
-import { getForecast } from "src/service/api";
-import { useAPI, usePrevious } from "src/utils/hooks";
 import {
   Row,
   Box,
   Text,
+  TRow,
+  THead,
+  TCell,
   Select,
   Loading,
   TextBold,
   Container,
-  THead,
-  TCell,
-  TRow,
 } from "src/components";
+import { Sizes } from "src/styles/themes";
+import { getForecast } from "src/service/api";
+import { useAPI, usePrevious } from "src/utils/hooks";
 
 import { CITIES } from "./constants";
 import { optionTypeDefault } from "./defaults";
